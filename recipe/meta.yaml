@@ -30,8 +30,8 @@ requirements:
     - ninja
     - meson
   host:
-    - aom
-    - dav1d
+    - aom 3.6.0
+    - dav1d 1.2.1
     # - libpng
     # - jpeg
     # - svt-av1  # TODO: linking error with this optional library
@@ -66,6 +66,8 @@ about:
     This library aims to be a friendly, portable C implementation of the AV1
     Image File Format, as described here
     <https://aomediacodec.github.io/av1-avif/>.
+  doc_url: https://github.com/AOMediaCodec/libavif
+  dev_url: https://github.com/AOMediaCodec/libavif
 
 extra:
   recipe-maintainers:
