@@ -57,7 +57,7 @@ test:
     - if not exist %PREFIX%\\Library\\lib\\cmake\\libavif\\libavif-config-version.cmake exit 1  # [win]
 
 about:
-  home: https://github.com/AOMediaCodec/libavif
+  home: https://aomediacodec.github.io/av1-avif/
   license: BSD-2-Clause
   license_family: BSD
   license_file: LICENSE
@@ -66,7 +66,7 @@ about:
     This library aims to be a friendly, portable C implementation of the AV1
     Image File Format, as described here
     <https://aomediacodec.github.io/av1-avif/>.
-  doc_url: https://github.com/AOMediaCodec/libavif
+  doc_url: https://aomediacodec.github.io/av1-avif/
   dev_url: https://github.com/AOMediaCodec/libavif
 
 extra:
