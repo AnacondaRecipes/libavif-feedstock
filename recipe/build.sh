@@ -1,5 +1,5 @@
-mkdir build
-cd build
+mkdir build && cd build
+
 # 2022/04/07 hmaarrfk:
 # Tests have strange dependencies, which aren't required for the
 # actual application
@@ -8,8 +8,8 @@ cd build
 # https://github.com/AOMediaCodec/libavif/issues/798
 AVIF_BUILD_TESTS=OFF
 
-# Other codecs cannot be enabled because they are not on conda-forge
-cmake .. "${CMAKE_ARGS}" -GNinja \
+# Other codecs cannot be enabled because they are not on default
+cmake .. ${CMAKE_ARGS} -G Ninja \
 -DCMAKE_INSTALL_PREFIX="$PREFIX" \
 -DCMAKE_INSTALL_LIBDIR=lib \
 -DBUILD_SHARED_LIBS=ON \
