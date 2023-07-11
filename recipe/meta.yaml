@@ -1,6 +1,6 @@
 {% set name = "libavif" %}
-# NOTE: Humans must also update the library version in the tests section of this recipe
 {% set version = "0.11.1" %}
+# NOTE: Humans must also update the library version in so_version
 # Look in the libavif top level CMakeLists.txt for the updated library
 # version (not the same as the project version) to update parameters for existence checks
 {% set so_version = "15.0.1" %}
@@ -31,9 +31,6 @@ requirements:
   host:
     - aom 3.6.0
     - dav1d 1.2.1
-    # - libpng
-    # - jpeg
-    # - svt-av1  # TODO: linking error with this optional library
 
 test:
   commands:
