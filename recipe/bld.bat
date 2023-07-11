@@ -3,7 +3,7 @@ cd build
 if errorlevel 1 exit /b 1
 
 :: Other codecs cannot be enabled because they are not on default
-cmake .. -G Ninja                                 ^
+cmake .. -G Ninja                                ^
   -DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
   -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%"    ^
   -DCMAKE_INSTALL_LIBDIR=lib                     ^

@@ -28,7 +28,6 @@ requirements:
     - {{ compiler('c') }}
     - nasm  # [x86_64]
     - ninja
-    - meson
   host:
     - aom 3.6.0
     - dav1d 1.2.1
