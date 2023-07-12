@@ -1,6 +1,6 @@
 {% set name = "libavif" %}
-# NOTE: Humans must also update the library version in the tests section of this recipe
 {% set version = "0.11.1" %}
+# NOTE: Humans must also update the library version in so_version
 # Look in the libavif top level CMakeLists.txt for the updated library
 # version (not the same as the project version) to update parameters for existence checks
 {% set so_version = "15.0.1" %}
@@ -20,21 +20,17 @@ build:
     # The SO name changes every version
     # https://github.com/AOMediaCodec/libavif/issues/799
     - {{ pin_subpackage('libavif', min_pin='x.x.x', max_pin='x.x.x') }}
-  number: 2
+  number: 0
 
 requirements:
   build:
     - cmake
     - {{ compiler('c') }}
-    - nasm
+    - nasm  # [x86_64]
     - ninja
-    - meson
   host:
-    - aom
-    - dav1d
-    # - libpng
-    # - jpeg
-    # - svt-av1  # TODO: linking error with this optional library
+    - aom 3.6.0
+    - dav1d 1.2.1
 
 test:
   commands:
@@ -57,7 +53,7 @@ test:
     - if not exist %PREFIX%\\Library\\lib\\cmake\\libavif\\libavif-config-version.cmake exit 1  # [win]
 
 about:
-  home: https://github.com/AOMediaCodec/libavif
+  home: https://aomediacodec.github.io/av1-avif/
   license: BSD-2-Clause
   license_family: BSD
   license_file: LICENSE
@@ -66,6 +62,8 @@ about:
     This library aims to be a friendly, portable C implementation of the AV1
     Image File Format, as described here
     <https://aomediacodec.github.io/av1-avif/>.
+  doc_url: https://aomediacodec.github.io/av1-avif/
+  dev_url: https://github.com/AOMediaCodec/libavif
 
 extra:
   recipe-maintainers:
