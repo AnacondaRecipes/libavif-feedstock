@@ -1,3 +1,4 @@
+#!/bin/bash
 mkdir build && cd build
 
 # 2022/04/07 hmaarrfk:
