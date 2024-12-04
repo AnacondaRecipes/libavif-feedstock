@@ -33,8 +33,9 @@ requirements:
 test:
   commands:
     - test -f ${PREFIX}/include/avif/avif.h                         # [unix]
-    - test -f ${PREFIX}/include/avif/avif_cxx.h                         # [unix]
+    - test -f ${PREFIX}/include/avif/avif_cxx.h                     # [unix]
     - if not exist %PREFIX%\\Library\\include\\avif\\avif.h exit 1  # [win]
+    - if not exist %PREFIX%\\Library\\include\\avif\\avif_cxx.h exit 1  # [win]
     - test -f ${PREFIX}/lib/libavif${SHLIB_EXT}                   # [unix]
     - test -f ${PREFIX}/lib/libavif.so.{{ so_major_version }}     # [linux]
     - test -f ${PREFIX}/lib/libavif.so.{{ so_version }}           # [linux]
