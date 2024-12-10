@@ -14,11 +14,13 @@ cmake .. -G Ninja                                ^
   -DAVIF_CODEC_SVT=OFF                           ^
   -DAVIF_CODEC_DAV1D=ON                          ^
   -DAVIF_CODEC_LIBGAV1=OFF                       ^
-  -DAVIF_ENABLE_WERROR=OFF
+  -DAVIF_CODEC_RAV1E=OFF                         ^
+  -DAVIF_ENABLE_WERROR=OFF                       ^
+  -DAVIF_LIBYUV=OFF
 if errorlevel 1 exit /b 1
 
 ninja
 if errorlevel 1 exit /b 1
 
-ninja install
+ninja install -j%CPU_COUNT%
 if errorlevel 1 exit /b 1

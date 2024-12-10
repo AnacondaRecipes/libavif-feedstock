@@ -1,3 +1,4 @@
+#!/bin/bash
 mkdir build && cd build
 
 # 2022/04/07 hmaarrfk:
@@ -19,8 +20,10 @@ cmake .. ${CMAKE_ARGS} -G Ninja \
 -DAVIF_CODEC_SVT=OFF \
 -DAVIF_CODEC_DAV1D=ON \
 -DAVIF_CODEC_LIBGAV1=OFF \
--DAVIF_BUILD_TESTS=${AVIF_BUILD_TESTS}
+-DAVIF_CODEC_RAV1E=OFF \
+-DAVIF_BUILD_TESTS=${AVIF_BUILD_TESTS} \
+-DAVIF_LIBYUV=OFF
 
 ninja
 
-ninja install
+ninja install -j${CPU_COUNT}
