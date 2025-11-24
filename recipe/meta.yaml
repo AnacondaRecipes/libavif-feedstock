@@ -15,7 +15,7 @@ source:
   sha256: 0a545e953cc049bf5bcf4ee467306a2f113a75110edf59e61248873101cd26c1
 
 build:
-  number: 1
+  number: 0
   run_exports:
     - {{ pin_subpackage('libavif', max_pin='x') }}
 
@@ -24,11 +24,11 @@ requirements:
     - cmake
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
-    - m2-sed  # [win]
-    - ninja
+    - msys2-sed  # [win]
+    - ninja-base
   host:
     - aom {{ aom }}
-    - dav1d 1.2.1
+    - dav1d {{ dav1d }}
 
 test:
   commands:
