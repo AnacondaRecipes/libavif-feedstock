@@ -29,6 +29,9 @@ requirements:
   host:
     - aom {{ aom }}
     - dav1d {{ dav1d }}
+  run:
+    - aom
+    - dav1d
 
 test:
   commands:
