@@ -16,7 +16,7 @@ source:
   sha256: 914662e16245e062ed73f90112fbb4548241300843a7772d8d441bb6859de45b
 
 build:
-  number: 1
+  number: 2
   run_exports:
     - {{ pin_subpackage('libavif', max_pin='x') }}
 
@@ -28,7 +28,7 @@ requirements:
     - ninja
   host:
     - aom {{ aom }}
-    - dav1d 1.2.1
+    - dav1d {{ dav1d }}
 
 test:
   commands:
