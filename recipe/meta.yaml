@@ -15,7 +15,7 @@ source:
   sha256: 2b645287340ba5a631d268b551dc2d72bd73ac33335962dd36dcdb6d8366921d
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('libavif', max_pin='x') }}
 
@@ -34,7 +34,12 @@ requirements:
     - dav1d
 
 test:
+  requires:
+    - python
   commands:
+    # The AV1 codecs must be compiled in, not just installed alongside.
+    - python -c "import ctypes, sys; lib = ctypes.CDLL(sys.argv[1]); buf = ctypes.create_string_buffer(512); lib.avifCodecVersions(buf); v = buf.value.decode(); print(v); assert 'dav1d' in v and 'aom' in v, v" ${PREFIX}/lib/libavif${SHLIB_EXT}  # [unix]
+    - python -c "import ctypes, sys; lib = ctypes.CDLL(sys.argv[1]); buf = ctypes.create_string_buffer(512); lib.avifCodecVersions(buf); v = buf.value.decode(); print(v); assert 'dav1d' in v and 'aom' in v, v" %PREFIX%\\Library\\bin\\avif.dll  # [win]
     - test -f ${PREFIX}/include/avif/avif.h                         # [unix]
     - test -f ${PREFIX}/include/avif/avif_cxx.h                     # [unix]
     - if not exist %PREFIX%\\Library\\include\\avif\\avif.h exit 1  # [win]
