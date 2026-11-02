@@ -39,8 +39,10 @@ test:
     # not just installed alongside.
     - grep -q dav1d_send_data ${PREFIX}/lib/libavif${SHLIB_EXT}              # [unix]
     - grep -q aom_codec_av1_dx ${PREFIX}/lib/libavif${SHLIB_EXT}             # [unix]
+    - grep -q aom_codec_av1_cx ${PREFIX}/lib/libavif${SHLIB_EXT}             # [unix]
     - findstr /m /c:dav1d_send_data %PREFIX%\\Library\\bin\\avif.dll    # [win]
     - findstr /m /c:aom_codec_av1_dx %PREFIX%\\Library\\bin\\avif.dll   # [win]
+    - findstr /m /c:aom_codec_av1_cx %PREFIX%\\Library\\bin\\avif.dll   # [win]
     - test -f ${PREFIX}/include/avif/avif.h                         # [unix]
     - test -f ${PREFIX}/include/avif/avif_cxx.h                     # [unix]
     - if not exist %PREFIX%\\Library\\include\\avif\\avif.h exit 1  # [win]
@@ -63,7 +65,9 @@ test:
 
 about:
   home: https://aomediacodec.github.io/av1-avif
-  license: BSD-2-Clause
+  # BSD-3-Clause: with AVIF_LIBYUV=OFF, upstream compiles its bundled libyuv sources
+  # (third_party/libyuv) into libavif; their notice is in LICENSE.
+  license: BSD-2-Clause AND BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
   summary: A friendly, portable C implementation of the AV1 Image File Format
