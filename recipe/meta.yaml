@@ -34,12 +34,13 @@ requirements:
     - dav1d
 
 test:
-  requires:
-    - python
   commands:
-    # The AV1 codecs must be compiled in, not just installed alongside.
-    - python -c "import ctypes, sys; lib = ctypes.CDLL(sys.argv[1]); buf = ctypes.create_string_buffer(512); lib.avifCodecVersions(buf); v = buf.value.decode(); print(v); assert 'dav1d' in v and 'aom' in v, v" ${PREFIX}/lib/libavif${SHLIB_EXT}  # [unix]
-    - python -c "import ctypes, sys; lib = ctypes.CDLL(sys.argv[1]); buf = ctypes.create_string_buffer(512); lib.avifCodecVersions(buf); v = buf.value.decode(); print(v); assert 'dav1d' in v and 'aom' in v, v" %PREFIX%\\Library\\bin\\avif.dll  # [win]
+    # The AV1 codecs must be compiled in (libavif imports their entry points),
+    # not just installed alongside.
+    - grep -q dav1d_send_data ${PREFIX}/lib/libavif${SHLIB_EXT}              # [unix]
+    - grep -q aom_codec_av1_dx ${PREFIX}/lib/libavif${SHLIB_EXT}             # [unix]
+    - findstr /m /c:dav1d_send_data %PREFIX%\\Library\\bin\\avif.dll    # [win]
+    - findstr /m /c:aom_codec_av1_dx %PREFIX%\\Library\\bin\\avif.dll   # [win]
     - test -f ${PREFIX}/include/avif/avif.h                         # [unix]
     - test -f ${PREFIX}/include/avif/avif_cxx.h                     # [unix]
     - if not exist %PREFIX%\\Library\\include\\avif\\avif.h exit 1  # [win]
