@@ -9,16 +9,16 @@ mkdir build && cd build
 # https://github.com/AOMediaCodec/libavif/issues/798
 AVIF_BUILD_TESTS=OFF
 
-# Other codecs cannot be enabled because they are not on default
+# Other codecs cannot be enabled because they are not on default.
+# libavif 1.x codec options take OFF/LOCAL/SYSTEM; "ON" silently builds no codec.
 cmake .. ${CMAKE_ARGS} -G Ninja \
 -DCMAKE_INSTALL_PREFIX="$PREFIX" \
 -DCMAKE_INSTALL_LIBDIR=lib \
 -DBUILD_SHARED_LIBS=ON \
--DAVIF_BUILD_TESTS=ON \
 -DCMAKE_BUILD_TYPE=Release \
--DAVIF_CODEC_AOM=ON \
+-DAVIF_CODEC_AOM=SYSTEM \
 -DAVIF_CODEC_SVT=OFF \
--DAVIF_CODEC_DAV1D=ON \
+-DAVIF_CODEC_DAV1D=SYSTEM \
 -DAVIF_CODEC_LIBGAV1=OFF \
 -DAVIF_CODEC_RAV1E=OFF \
 -DAVIF_BUILD_TESTS=${AVIF_BUILD_TESTS} \
