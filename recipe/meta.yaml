@@ -24,7 +24,6 @@ requirements:
     - cmake
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
-    - msys2-sed  # [win]
     - ninja-base
   host:
     - aom {{ aom }}
